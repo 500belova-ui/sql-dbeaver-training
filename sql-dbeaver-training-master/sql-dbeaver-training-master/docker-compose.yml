@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: qa_sql_training_db
+    restart: always
+    environment:
+      POSTGRES_DB: qa_shop
+      POSTGRES_USER: qa_user
+      POSTGRES_PASSWORD: qa_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - qa_sql_training_data:/var/lib/postgresql/data
+
+volumes:
+  qa_sql_training_data:
